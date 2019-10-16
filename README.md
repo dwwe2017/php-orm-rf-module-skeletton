@@ -11,7 +11,7 @@ Since the JSX files are not needed in productive mode, but only the compiled scr
   │ └ IndexController/
   │   └ ..
   ...
-  ├ views
+  ├ views/
   │ └ IndexController/
   │   └ ..
   │
