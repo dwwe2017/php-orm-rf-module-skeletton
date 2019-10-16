@@ -1,0 +1,11 @@
+/.idea
+/.todo
+/config/*
+!/config/default-config.php.dist
+!/config/.htaccess
+!/log/.htaccess
+**/*.sqlite
+**/node_modules
+
+**/package.json
+**/package-lock.json

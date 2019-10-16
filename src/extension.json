@@ -1,0 +1,11 @@
+{
+  "id": "unique-module-id",
+  "name": "Example Extension",
+  "description": "The framework for the development of an extension module for the Tea(m)speak Interface 2 Framework",
+  "version": "1.0.0",
+  "release": 1,
+  "vendor": "DW Web-Engineering",
+  "url": "https://www.teamspeak-interface.net",
+  "support": "https://www.teamspeak-interface.net/forum",
+  "tsi_min_version": "2.0.0"
+}
