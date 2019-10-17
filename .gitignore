@@ -6,6 +6,5 @@
 !/log/.htaccess
 **/*.sqlite
 **/node_modules
-
 **/package.json
 **/package-lock.json
