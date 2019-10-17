@@ -20,7 +20,7 @@ First of all, you need to know that JSX files are not needed in production mode,
   │
   └ extension.json
 ```
-Now let's create the file ```fronted/IndexController/indexAction.tpl.jsx``` and fill it up as follows:
+Now let's create the file ```src/fronted/IndexController/indexAction.tpl.jsx``` and fill it up as follows:
 ```jsx harmony
 "use strict";
 
