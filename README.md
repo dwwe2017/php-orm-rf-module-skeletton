@@ -62,20 +62,7 @@ Finished! You can now start the build process by executing the following command
 npm run build
 ````
 The command starts a watcher that automatically compiles the .jsx files in the ```src/fronted``` directory with every change and saves them in the folder ```src/views```. To stop the watch process, simply press Ctrl + C.
-___
-#### Recommendation on the topic .gitignore
 
-Please note that you must add the following lines to the ```.gitignore``` file, as they will probably not lose anything in productive operation:
-````gitignore
-/config/*
-!/config/default-config.php.dist
-!/config/.htaccess
-!/log/.htaccess
-**/*.sqlite
-**/node_modules
-**/package.json
-**/package-lock.json
-````
 So that the system still knows that this action exists at all, you just have to make it known in the associated IndexController. To do this, we simply create the method indexAction, which is as follows:
 ```php
 namespace Modules\Dashboard\Controllers;
@@ -102,3 +89,17 @@ class IndexController extends RestrictedFrontController
 }
 ```
 By annotating the method, you can also control navigation and access properties, but more on that later. That was all for now, you can now call the view by using the following parameters in the browser ```index.php?module=example```.
+___
+#### Recommendation on the topic .gitignore
+
+Please note that you must add the following lines to the ```.gitignore``` file, as they will probably not lose anything in productive operation:
+````gitignore
+/config/*
+!/config/default-config.php.dist
+!/config/.htaccess
+!/log/.htaccess
+**/*.sqlite
+**/node_modules
+**/package.json
+**/package-lock.json
+````
