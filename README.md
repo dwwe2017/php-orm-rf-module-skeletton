@@ -4,7 +4,7 @@ The framework for the development of an extension module for the Tea(m)speak Int
 #### Use of React and JSX in the frontend
 First of all, you need to know that JSX files are not needed in production mode, you just need the compiled versions, so first we need an image of the folder ```src/view```, where we can map the structure with JSX files. For this we create a subfolder named ```src/fronted``` which will serve as source for the respective JSX action scripts. Now take the same subfolder structure for the directory ```src/fronted``` as it also exists in the folder ```src/views```. Assuming we want to create a ViewAction "index" for the IndexController, the folder structure would look like this:
 ```
-└ src/
+└ ModuleName/
  ...
   ├ fronted/
   │ └ IndexController/
