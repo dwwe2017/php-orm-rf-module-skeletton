@@ -1,7 +1,7 @@
 # tsi2-module-skeletton
 The framework for the development of an extension module for the Tea(m)speak Interface 2 Framework
 
-##### Use of React and JSX in the frontend
+#### Use of React and JSX in the frontend
 First of all, you need to know that JSX files are not needed in production mode, you just need the compiled versions, so first we need an image of the "view" folder, where we can map the structure with JSX files. For this we create a subfolder named "fronted" in the directory "src" which will serve as source for the respective JSX action scripts. Now take the same subfolder structure for the directory "fronted" as it also exists in the folder "views". Assuming we want to create a ViewAction "index" for the IndexController, the folder structure would look like this:
 ```
 └ src/
@@ -63,7 +63,7 @@ npm run build
 ````
 The command now starts a watcher that automatically compiles the .jsx files in the "src / fronted" directory with every change and saves them in the folder "src / views". To stop the build / watch process, simply press Ctrl + C.
 ___
-##### Recommendation on the topic .gitignore
+#### Recommendation on the topic .gitignore
 
 Please note that you must add the following lines to the .gitignore file, as they will probably not lose anything in productive operation:
 ````gitignore
