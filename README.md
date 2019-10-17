@@ -48,6 +48,8 @@ Once you've set up Node.js, open the command line, go to the root of your projec
 npm init -y
 npm install babel-cli@6 babel-preset-react-app@3
 ````
+> Note: We’re using npm here only to install the JSX preprocessor, you won’t need it for anything else.
+
 After this process, a file named ```package.json``` should now be in your root folder, it will be automatically created by npm during initialization. Open the file and add the following option "scripts", respectively overwrite them as follows:
 ````json
 {
