@@ -63,7 +63,7 @@ npm run build
 ````
 The command starts a watcher that automatically compiles the .jsx files in the ```src/fronted``` directory with every change and saves them in the folder ```src/views```. To stop the watch process, simply press Ctrl + C.
 
-So that the system still knows that this action exists at all, you just have to make it known in the associated IndexController. To do this, we simply create the method indexAction, which is as follows:
+In order for the system to know that this action even exists, you only need to make it known in the associated index controller under ```src/src/Controllers/IndexController.php```. To do this, we simply create the method indexAction, which then represents itself in the corresponding controller class
 ```php
 namespace Modules\Dashboard\Controllers;
 
