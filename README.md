@@ -2,7 +2,7 @@
 The framework for the development of an extension module for the Tea(m)speak Interface 2 Framework
 
 #### Use of React and JSX in the frontend
-First of all, you need to know that JSX files are not needed in production mode, you just need the compiled versions, so first we need an image of the "view" folder, where we can map the structure with JSX files. For this we create a subfolder named "fronted" in the directory "src" which will serve as source for the respective JSX action scripts. Now take the same subfolder structure for the directory "fronted" as it also exists in the folder "views". Assuming we want to create a ViewAction "index" for the IndexController, the folder structure would look like this:
+First of all, you need to know that JSX files are not needed in production mode, you just need the compiled versions, so first we need an image of the folder ```src/view```, where we can map the structure with JSX files. For this we create a subfolder named ```src/fronted``` which will serve as source for the respective JSX action scripts. Now take the same subfolder structure for the directory ```src/fronted``` as it also exists in the folder ```src/views```. Assuming we want to create a ViewAction "index" for the IndexController, the folder structure would look like this:
 ```
 └ src/
  ...
@@ -20,7 +20,7 @@ First of all, you need to know that JSX files are not needed in production mode,
   │
   └ extension.json
 ```
-Now let's create the file indexAction.tpl.jsx in the directory "fronted/IndexController" and fill it up as follows:
+Now let's create the file ```fronted/IndexController/indexAction.tpl.jsx``` and fill it up as follows:
 ```jsx harmony
 "use strict";
 
@@ -48,7 +48,7 @@ Once you've set up Node.js, open the command line, go to the root of your projec
 npm init -y
 npm install babel-cli@6 babel-preset-react-app@3
 ````
-After this process, a file named "package.json" should now be in your root folder, it will be automatically created by npm during initialization. Open the file and add the following option "scripts", respectively overwrite them as follows:
+After this process, a file named ```package.json``` should now be in your root folder, it will be automatically created by npm during initialization. Open the file and add the following option "scripts", respectively overwrite them as follows:
 ````json
 {
   "scripts": {
@@ -61,11 +61,11 @@ Finished! You can now start the build process by executing the following command
 ````
 npm run build
 ````
-The command now starts a watcher that automatically compiles the .jsx files in the "src / fronted" directory with every change and saves them in the folder "src / views". To stop the build / watch process, simply press Ctrl + C.
+The command starts a watcher that automatically compiles the .jsx files in the ```src/fronted``` directory with every change and saves them in the folder ```src/views```. To stop the watch process, simply press Ctrl + C.
 ___
 #### Recommendation on the topic .gitignore
 
-Please note that you must add the following lines to the .gitignore file, as they will probably not lose anything in productive operation:
+Please note that you must add the following lines to the ```.gitignore``` file, as they will probably not lose anything in productive operation:
 ````gitignore
 /config/*
 !/config/default-config.php.dist
