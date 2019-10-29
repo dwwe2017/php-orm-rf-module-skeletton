@@ -2,13 +2,15 @@
 The framework for the development of an extension module for the Tea(m)speak Interface 2 Framework
 
 #### Use of React and JSX in the frontend
-First of all, you need to know that JSX files are not needed in production mode, you just need the compiled versions, so first we need an image of the folder ```src/view```, where we can map the structure with JSX files. For this we create a subfolder named ```src/fronted``` which will serve as source for the respective JSX action scripts. Now take the same subfolder structure for the directory ```src/fronted``` as it also exists in the folder ```src/views```. Assuming we want to create a ViewAction "index" for the IndexController, the folder structure would look like this:
+
 ```
 └ ModuleName/
  ...
   ├ fronted/
   │ └ IndexController/
-  │   └ ..
+  │   └ indexAction
+  │     └ index.js
+  │     └ routes.js
  ...
   ├ src/
   │ └ Controllers/
@@ -20,50 +22,105 @@ First of all, you need to know that JSX files are not needed in production mode,
   │
   └ extension.json
 ```
-Now let's create the file ```src/fronted/IndexController/indexAction.tpl.jsx``` and fill it up as follows:
+Now let's create the file ```src/fronted/IndexController/indexAction/IndexAction.js``` and fill it up as follows:
 ```jsx harmony
-"use strict";
+import React from 'react';
+import {Div, WidgetBox, WidgetContent, WidgetHeader} from "tsi2-ui-library";
 
-/**
- *
- */
-class IndexAction extends React.Component {
-
+export default class IndexAction extends React.Component {
     constructor(props) {
-        super(props);       
+        super(props);
+        console.log(props);
+        this.state = {date: new Date()};
+    }
+
+    componentDidMount() {
+        this.timerID = setInterval(
+            () => this.tick(),
+            1000
+        );
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.timerID);
+    }
+
+    tick() {
+        this.setState({
+            date: new Date()
+        });
     }
 
     render() {
+        const timeText = <span >It's {this.state.date.toLocaleTimeString()}</span >;
+
         return (
-            <div className="col-md-12">
-                Yeah! Your first React-View!
-            </div>
+            <Div cols={"12"} >
+                <WidgetBox >
+                    <WidgetHeader title={"Time Example"} />
+                    <WidgetContent padding={true} >
+                        <div className="tabbable box-tabs" >
+                            <ul className="nav nav-tabs" >
+                                <li className="" ><a href="#box_tab3" data-toggle="tab" >Section 3</a ></li >
+                                <li className="" ><a href="#box_tab2" data-toggle="tab" >Section 2</a ></li >
+                                <li className="active" ><a href="#box_tab1" data-toggle="tab" >Time is running..</a ></li >
+                            </ul >
+                            <div className="tab-content" >
+                                <div className="tab-pane active" id="box_tab1" >
+                                    <div className="alert alert-warning" ><strong >Hey there!</strong > I'm a cool
+                                        alert.
+                                    </div >
+                                    <p >
+                                        {timeText}
+                                    </p >
+                                </div >
+                                <div className="tab-pane" id="box_tab2" >
+                                    <p >Content #2</p >
+                                </div >
+                                <div className="tab-pane" id="box_tab3" >
+                                    <p >Content #3</p >
+                                </div >
+                            </div >
+                        </div >
+                    </WidgetContent >
+                </WidgetBox >
+            </Div >
         );
     }
 }
 ```
-In order to compile the file accordingly so that they are then processed in the view, we need Node.js. If you have not already installed it, you can download it from ```https://nodejs.org/``` and set it up according to the instructions.
-Once you've set up Node.js, open the command line, go to the root of your project, and enter the following commands:
+In order to compile the file accordingly so that they are then processed in the view, we need Yarn and Node.js. If you have not already installed it, you can download it from ```https://nodejs.org/``` and ```https://yarnpkg.com/en/```.
+Once you've set up Node.js and Yarn, open the command line, go to the root of your project, and enter the following commands:
 ````
-npm init -y
-npm install babel-cli@6 babel-preset-react-app@3
+yarn install
 ````
-> Note: We’re using npm here only to install the JSX preprocessor, you won’t need it for anything else.
+> Note: All required modules are now installed from the package.json file.
 
-After this process, a file named ```package.json``` should now be in your root folder, it will be automatically created by npm during initialization. Open the file and add the following option "scripts", respectively overwrite them as follows:
-````json
-{
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npx babel --watch src/fronted --out-dir src/views --presets react-app/prod"
-  }
-}
+After this process, a folder named ```node_modules``` should now be in your root folder. 
+
+Now open the file ```webpack.config.js``` and adjust the paths of the controllers and their actions accordingly, this is important for the build process so that the files are copied wherever they are supposed to go
+````javascript
+
+...    
+    /*
+     * CONFIG
+     *
+     * Add 1 entry for each action method of a controller
+     * As a name, you should use the controller followed by the action method (e. g. IndexController/indexAction)
+     *
+     * Each entry will result in one JavaScript file (e.g. indexAction.js)
+     * and one CSS file (e.g. indexAction.css) if your JavaScript imports CSS.
+     */
+    .addEntry('IndexController/indexAction', './Module/fronted/IndexController/indexAction/index.js')
+    //.addEntry('ExampleController/secondAction', './Module/fronted/IndexController/secondAction/index.js')
+    //.addEntry('ExampleController/thirdAction', './Module/fronted/IndexController/thirdAction/index.js')
+...
 ````
 Finished! You can now start the build process by executing the following command in the command line:
 ````
-npm run build
+> npm run dev (for developement)
+> npm run build (for production)
 ````
-The command starts a watcher that automatically compiles the .jsx files in the ```src/fronted``` directory with every change and saves them in the folder ```src/views```. To stop the watch process, simply press Ctrl + C.
 
 In order for the system to know that this action even exists, you only need to make it known in the associated index controller under ```src/src/Controllers/IndexController.php```. For this we simply create the method indexAction as follows:
 ```php
@@ -105,3 +162,5 @@ Please note that you must add the following lines to the ```.gitignore``` file, 
 **/package.json
 **/package-lock.json
 ````
+
+#More coming soon ..

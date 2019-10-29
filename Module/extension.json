@@ -1,0 +1,11 @@
+{
+  "id": "a-unique-name-without-special-characters",
+  "name": "My Magic Extension",
+  "description": "My worst worn new module for the TSI2",
+  "version": "1.0.0",
+  "release": 1,
+  "vendor": "My Company, Name, etc.",
+  "url": "https://www.my-company.net",
+  "support": "https://www.support.net/forum",
+  "tsi_min_version": "2.0.0"
+}

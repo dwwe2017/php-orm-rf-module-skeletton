@@ -1,0 +1,10 @@
+{
+  "entrypoints": {
+    "IndexController/indexAction": {
+      "js": [
+        "/runtime.js",
+        "/IndexController/indexAction.js"
+      ]
+    }
+  }
+}

@@ -23,25 +23,11 @@ use Controllers\RestrictedFrontController;
 class IndexController extends RestrictedFrontController
 {
     /**
-     * @internal View: PHP/Twig
+     * @internal ReactJS
+     * @see views/IndexController/indexAction.js
      */
     public function indexAction(): void
     {
-        /**
-         * If you use a normal PHP method, then the view is rendered using the Twig template in the directory xy of the same name.
-         * @see views/IndexController/indexAction.tpl.js
-         */
-    }
-
-    /**
-     * @internal View: React/JS
-     */
-    public function reactAction(): void
-    {
-        /**
-         * In the event that a JS file is found instead of a Twig template, the TSI automatically uses React as a view in the fronted
-         * @see fronted/IndexController/reactAction.tpl.jsx
-         * @see views/IndexController/indexAction.tpl.js
-         */
+        $this->addJs();
     }
 }

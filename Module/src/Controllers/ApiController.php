@@ -13,8 +13,7 @@ use Controllers\RestrictedXmlController;
 class ApiController extends RestrictedXmlController
 {
     /**
-     * eg. for Ajax request via React
-     * @see IndexController::reactAction()
+     * @see fronted/IndexController/indexAction/TestAction.js
      */
     public function indexAction(): void
     {
