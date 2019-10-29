@@ -10,7 +10,7 @@ const initProps = window.INIT_PROPS;
 const renderDOM = initProps.domId;
 
 const App = ({ ...props }) => (
-    <BrowserRouter basename={`${props.baseUrl}/index.php?module=${props.moduleId.toLowerCase()}`}>
+    <BrowserRouter basename={`${(props.baseUrl).replace(/&amp;/g, '&')}`}>
         <Routes {...props} />
     </BrowserRouter>
 );
