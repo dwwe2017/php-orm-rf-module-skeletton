@@ -12,7 +12,5 @@
 /meta
 **/node_modules
 !assets/js/node_modules/
-**/fronted
-**/package.json
 /modules/**
 *.log
