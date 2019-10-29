@@ -10,7 +10,7 @@ const initProps = window.INIT_PROPS;
 const renderDOM = initProps.domId;
 
 const App = ({ ...props }) => (
-    <BrowserRouter basename={`${(props.baseUrl).replace(/&amp;/g, '&')}`}>
+    <BrowserRouter basename={props.baseUrl}>
         <Routes {...props} />
     </BrowserRouter>
 );
