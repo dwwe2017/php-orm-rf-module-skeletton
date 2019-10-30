@@ -3,9 +3,12 @@ import axios from 'axios';
 import {Div, WidgetBox, WidgetContent, WidgetHeader} from "tsi2-ui-library";
 
 export default class TestAction extends React.Component {
-    state = {
-        data: null
-    };
+    constructor(props){
+        super(props);
+        this.state = {
+            data: null
+        }
+    }
 
     componentDidMount() {
         axios.get("index.php?module=module&controller=api").then(res => {

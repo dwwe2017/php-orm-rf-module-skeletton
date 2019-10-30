@@ -7,7 +7,7 @@ import Routes from "./routes";
 import {BrowserRouter} from "react-router-dom";
 
 const initProps = window.INIT_PROPS;
-const renderDOM = initProps.domId;
+const renderDOM = initProps.reactDOM;
 
 const App = ({ ...props }) => (
     <BrowserRouter basename={props.baseUrl}>
