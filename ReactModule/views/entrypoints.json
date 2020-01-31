@@ -1,0 +1,13 @@
+{
+  "entrypoints": {
+    "IndexController/formAction": {
+      "js": [
+        "/runtime.js",
+        "/IndexController/formAction.js"
+      ],
+      "css": [
+        "/IndexController/formAction.css"
+      ]
+    }
+  }
+}

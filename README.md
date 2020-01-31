@@ -1,5 +1,7 @@
-# tsi2-module-skeletton
-The framework for the development of an extension module for the Tea(m)speak Interface 2 Framework
+# Phorm RF Skeletton
+The framework for the development of an extension module for the Php Orm React Framework
+
+.. will be updated! ..
 
 #### Use of React and JSX in the frontend
 
@@ -22,12 +24,12 @@ The framework for the development of an extension module for the Tea(m)speak Int
   │
   └ extension.json
 ```
-Now let's create the file ```src/fronted/IndexController/indexAction/IndexAction.js``` and fill it up as follows:
+Now let's create the file ```src/fronted/IndexController/indexAction/FormAction.js``` and fill it up as follows:
 ```jsx harmony
 import React from 'react';
 import {Div, WidgetBox, WidgetContent, WidgetHeader} from "tsi2-ui-library";
 
-export default class IndexAction extends React.Component {
+export default class FormAction extends React.Component {
     constructor(props) {
         super(props);
         console.log(props);
