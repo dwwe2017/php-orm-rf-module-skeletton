@@ -28,6 +28,7 @@ namespace Modules\ReactModule\Controllers;
 
 use Annotations\Access;
 use Annotations\Navigation;
+use Annotations\Redirect;
 use Annotations\SubNavigation;
 use Controllers\RestrictedFrontController;
 
@@ -42,11 +43,9 @@ class IndexController extends RestrictedFrontController
     /**
      * @internal ReactJS
      * @see views/IndexController/indexAction.js
+     * @Redirect(module="reactModule", action="form")
      */
-    public function indexAction(): void
-    {
-        $this->redirect("reactModule", "index", "form");
-    }
+    public function indexAction(): void {}
 
     /**
      * @SubNavigation(text="Forms and Validation", icon="cil-short-text")
@@ -59,8 +58,5 @@ class IndexController extends RestrictedFrontController
     /**
      * @SubNavigation(text="Tabs and Routes", icon="cil-window-restore")
      */
-    public function routesAction()
-    {
-
-    }
+    public function routesAction(): void {}
 }
