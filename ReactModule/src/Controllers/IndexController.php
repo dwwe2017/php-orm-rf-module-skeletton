@@ -35,7 +35,7 @@ use Controllers\RestrictedFrontController;
  * Class PublicController
  * @package Modules\Dashboard\Controllers
  * @Access(role=Entities\Group::ROLE_USER)
- * @Navigation(position="sidebar", icon="icon-dashboard")
+ * @Navigation(text="React Examples", position="sidebar", icon="cil-level-down")
  */
 class IndexController extends RestrictedFrontController
 {
@@ -49,10 +49,18 @@ class IndexController extends RestrictedFrontController
     }
 
     /**
-     * @SubNavigation(text="Forms and Validation", icon="short-text")
+     * @SubNavigation(text="Forms and Validation", icon="cil-short-text")
      */
     public function formAction(): void
     {
         $this->addContext("example_message", "This text has been sent by Ajax ;)");
+    }
+
+    /**
+     * @SubNavigation(text="Tabs and Routes", icon="cil-window-restore")
+     */
+    public function routesAction()
+    {
+
     }
 }

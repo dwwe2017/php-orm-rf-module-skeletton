@@ -116,14 +116,14 @@ class FormAction extends React.Component {
         this.touchAll = this.touchAll.bind(this);
 
         this.state = {
-            fields: null
+            message: null
         }
     }
 
     componentDidMount() {
-        axios.get("index.php?module=user&controller=api&action=getFields").then(res => {
-            const fields = res.data.fields;
-            this.setState({fields})
+        axios.get("index.php?module=reactModule&controller=api&action=getMessage").then(res => {
+            const message = res.data.message;
+            this.setState({message})
         })
     }
 
@@ -160,183 +160,184 @@ class FormAction extends React.Component {
     render() {
         const {t} = this.props;
         return (
-            <div className="animated fadeIn">
-                <Card>
-                    <CardHeader>
-                        <i className="icon-note"/><strong>{t("Form Validation")}</strong>
-                        <a href="https://coreui.io/pro/react/" className="badge badge-danger ml-1">CoreUI Pro</a>
-                        <div className="card-header-actions">
-                            <a className="card-header-action" href="https://github.com/jaredpalmer/formik"
-                               target="_blank" rel="noreferrer noopener">
-                                <small className="text-muted">docs</small>
-                            </a>
-                        </div>
-                    </CardHeader>
-                    <CardBody>
-                        <a href="https://github.com/jaredpalmer/formik" target="_blank"
-                           rel="noreferrer noopener">Formik</a> <cite>Build forms in React, without the
-                        tears</cite> with <a href="https://github.com/jquense/yup" target="_blank"
-                                             rel="noreferrer noopener">Yup</a> <cite>Dead simple Object schema
-                        validation</cite>
-                        <hr/>
-                        <Formik
-                            initialValues={initialValues}
-                            validate={validate(validationSchema)}
-                            onSubmit={onSubmit}
-                            render={
-                                ({
-                                     values,
-                                     errors,
-                                     touched,
-                                     status,
-                                     dirty,
-                                     handleChange,
-                                     handleBlur,
-                                     handleSubmit,
-                                     isSubmitting,
-                                     isValid,
-                                     handleReset,
-                                     setTouched
-                                 }) => (
-                                    <Row>
-                                        <Col lg="6">
-                                            <Form onSubmit={handleSubmit} noValidate name='simpleForm'>
-                                                <FormGroup>
-                                                    <Label for="firstName">First Name</Label>
-                                                    <Input type="text"
-                                                           name="firstName"
-                                                           id="firstName"
-                                                           placeholder="First Name"
-                                                           autoComplete="given-name"
-                                                           valid={!errors.firstName}
-                                                           invalid={touched.firstName && !!errors.firstName}
-                                                           autoFocus={true}
-                                                           required
-                                                           onChange={handleChange}
-                                                           onBlur={handleBlur}
-                                                           value={values.firstName}/>
-                                                    <FormFeedback>{errors.firstName}</FormFeedback>
-                                                </FormGroup>
-                                                <FormGroup>
-                                                    <Label for="lastName">Last Name</Label>
-                                                    <Input type="text"
-                                                           name="lastName"
-                                                           id="lastName"
-                                                           placeholder="Last Name"
-                                                           autoComplete="family-name"
-                                                           valid={!errors.lastName}
-                                                           invalid={touched.lastName && !!errors.lastName}
-                                                           required
-                                                           onChange={handleChange}
-                                                           onBlur={handleBlur}
-                                                           value={values.lastName}/>
-                                                    <FormFeedback>{errors.lastName}</FormFeedback>
-                                                </FormGroup>
-                                                <FormGroup>
-                                                    <Label for="userName">User Name</Label>
-                                                    <Input type="text"
-                                                           name="userName"
-                                                           id="userName"
-                                                           placeholder="User Name"
-                                                           autoComplete="username"
-                                                           valid={!errors.userName}
-                                                           invalid={touched.userName && !!errors.userName}
-                                                           required
-                                                           onChange={handleChange}
-                                                           onBlur={handleBlur}
-                                                           value={values.userName}/>
-                                                    <FormFeedback>{errors.userName}</FormFeedback>
-                                                </FormGroup>
-                                                <FormGroup>
-                                                    <Label for="email">Email</Label>
-                                                    <Input type="email"
-                                                           name="email"
-                                                           id="email"
-                                                           placeholder="Email"
-                                                           autoComplete="email"
-                                                           valid={!errors.email}
-                                                           invalid={touched.email && !!errors.email}
-                                                           required
-                                                           onChange={handleChange}
-                                                           onBlur={handleBlur}
-                                                           value={values.email}/>
-                                                    <FormFeedback>{errors.email}</FormFeedback>
-                                                </FormGroup>
-                                                <Row>
-                                                    <Col md={6}>
-                                                        <FormGroup>
-                                                            <Label for="password">Password</Label>
-                                                            <Input type="password"
-                                                                   name="password"
-                                                                   id="password"
-                                                                   placeholder="Password"
-                                                                   autoComplete="new-password"
-                                                                   valid={!errors.password}
-                                                                   invalid={touched.password && !!errors.password}
-                                                                   required
-                                                                   onChange={handleChange}
-                                                                   onBlur={handleBlur}
-                                                                   value={values.password}/>
-                                                            {/*<FormFeedback>Required password containing at least: number, uppercase and lowercase letter, 8 characters</FormFeedback>*/}
-                                                            <FormFeedback>{errors.password}</FormFeedback>
-                                                        </FormGroup>
-                                                    </Col>
-                                                    <Col md={6}>
-                                                        <FormGroup>
-                                                            <Label for="confirmPassword">Password</Label>
-                                                            <Input type="password"
-                                                                   name="confirmPassword"
-                                                                   id="confirmPassword"
-                                                                   placeholder="Confirm password"
-                                                                   autoComplete="new-password"
-                                                                   valid={!errors.confirmPassword}
-                                                                   invalid={touched.confirmPassword && !!errors.confirmPassword}
-                                                                   required
-                                                                   onChange={handleChange}
-                                                                   onBlur={handleBlur}
-                                                                   value={values.confirmPassword}/>
-                                                            <FormFeedback>{errors.confirmPassword}</FormFeedback>
-                                                        </FormGroup>
-                                                    </Col>
-                                                </Row>
-                                                <FormGroup>
-                                                    <CustomInput
-                                                        type="checkbox"
-                                                        id="accept"
-                                                        label="I accept the terms of use"
-                                                        required
-                                                        valid={!errors.accept}
-                                                        invalid={touched.accept && !!errors.accept}
-                                                        onChange={handleChange}
-                                                        onBlur={handleBlur}>
-                                                        <FormFeedback>{errors.accept}</FormFeedback>
-                                                    </CustomInput>
-                                                </FormGroup>
-                                                <FormGroup>
-                                                    <Button type="submit" color="primary" className="mr-1"
-                                                            disabled={isSubmitting || !isValid}>{isSubmitting ? 'Wait...' : 'Submit'}</Button>
-                                                    <Button type="button" color="success" className="mr-1"
-                                                            onClick={() => this.touchAll(setTouched, errors)}
-                                                            disabled={isValid}>Validate</Button>
-                                                    <Button type="reset" color="danger" className="mr-1"
-                                                            onClick={handleReset}>Reset</Button>
-                                                </FormGroup>
-                                            </Form>
-                                        </Col>
-                                        <Col lg="6">
-                                            <Card className={isValid ? 'bg-info' : 'bg-secondary'}>
-                                                <CardBody>
-                                                    <pre>values: {JSON.stringify(values, null, 2)}</pre>
-                                                    <pre>errors: {JSON.stringify(errors, null, 2)}</pre>
-                                                    <pre>touched: {JSON.stringify(touched, null, 2)}</pre>
-                                                </CardBody>
-                                            </Card>
-                                        </Col>
-                                    </Row>
-                                )}/>
-                    </CardBody>
-                </Card>
-            </div>
+            <Card>
+                <CardHeader>
+                    <i className="icon-note"/><strong>{t("Form Validation")}</strong>
+                    {this.state.message ?
+                        <a href="#" className="badge badge-success ml-1">{this.state.message}</a> :
+                        <a href="#" className="badge badge-info ml-1">Loading..</a>
+                    }
+                    <div className="card-header-actions">
+                        <a className="card-header-action" href="https://github.com/jaredpalmer/formik"
+                           target="_blank" rel="noreferrer noopener">
+                            <small className="text-muted">docs</small>
+                        </a>
+                    </div>
+                </CardHeader>
+                <CardBody>
+                    <a href="https://github.com/jaredpalmer/formik" target="_blank"
+                       rel="noreferrer noopener">Formik</a> <cite>Build forms in React, without the
+                    tears</cite> with <a href="https://github.com/jquense/yup" target="_blank"
+                                         rel="noreferrer noopener">Yup</a> <cite>Dead simple Object schema
+                    validation</cite>
+                    <hr/>
+                    <Formik
+                        initialValues={initialValues}
+                        validate={validate(validationSchema)}
+                        onSubmit={onSubmit}
+                        render={
+                            ({
+                                 values,
+                                 errors,
+                                 touched,
+                                 status,
+                                 dirty,
+                                 handleChange,
+                                 handleBlur,
+                                 handleSubmit,
+                                 isSubmitting,
+                                 isValid,
+                                 handleReset,
+                                 setTouched
+                             }) => (
+                                <Row>
+                                    <Col lg="6">
+                                        <Form onSubmit={handleSubmit} noValidate name='simpleForm'>
+                                            <FormGroup>
+                                                <Label for="firstName">First Name</Label>
+                                                <Input type="text"
+                                                       name="firstName"
+                                                       id="firstName"
+                                                       placeholder="First Name"
+                                                       autoComplete="given-name"
+                                                       valid={!errors.firstName}
+                                                       invalid={touched.firstName && !!errors.firstName}
+                                                       autoFocus={true}
+                                                       required
+                                                       onChange={handleChange}
+                                                       onBlur={handleBlur}
+                                                       value={values.firstName}/>
+                                                <FormFeedback>{errors.firstName}</FormFeedback>
+                                            </FormGroup>
+                                            <FormGroup>
+                                                <Label for="lastName">Last Name</Label>
+                                                <Input type="text"
+                                                       name="lastName"
+                                                       id="lastName"
+                                                       placeholder="Last Name"
+                                                       autoComplete="family-name"
+                                                       valid={!errors.lastName}
+                                                       invalid={touched.lastName && !!errors.lastName}
+                                                       required
+                                                       onChange={handleChange}
+                                                       onBlur={handleBlur}
+                                                       value={values.lastName}/>
+                                                <FormFeedback>{errors.lastName}</FormFeedback>
+                                            </FormGroup>
+                                            <FormGroup>
+                                                <Label for="userName">User Name</Label>
+                                                <Input type="text"
+                                                       name="userName"
+                                                       id="userName"
+                                                       placeholder="User Name"
+                                                       autoComplete="username"
+                                                       valid={!errors.userName}
+                                                       invalid={touched.userName && !!errors.userName}
+                                                       required
+                                                       onChange={handleChange}
+                                                       onBlur={handleBlur}
+                                                       value={values.userName}/>
+                                                <FormFeedback>{errors.userName}</FormFeedback>
+                                            </FormGroup>
+                                            <FormGroup>
+                                                <Label for="email">Email</Label>
+                                                <Input type="email"
+                                                       name="email"
+                                                       id="email"
+                                                       placeholder="Email"
+                                                       autoComplete="email"
+                                                       valid={!errors.email}
+                                                       invalid={touched.email && !!errors.email}
+                                                       required
+                                                       onChange={handleChange}
+                                                       onBlur={handleBlur}
+                                                       value={values.email}/>
+                                                <FormFeedback>{errors.email}</FormFeedback>
+                                            </FormGroup>
+                                            <Row>
+                                                <Col md={6}>
+                                                    <FormGroup>
+                                                        <Label for="password">Password</Label>
+                                                        <Input type="password"
+                                                               name="password"
+                                                               id="password"
+                                                               placeholder="Password"
+                                                               autoComplete="new-password"
+                                                               valid={!errors.password}
+                                                               invalid={touched.password && !!errors.password}
+                                                               required
+                                                               onChange={handleChange}
+                                                               onBlur={handleBlur}
+                                                               value={values.password}/>
+                                                        {/*<FormFeedback>Required password containing at least: number, uppercase and lowercase letter, 8 characters</FormFeedback>*/}
+                                                        <FormFeedback>{errors.password}</FormFeedback>
+                                                    </FormGroup>
+                                                </Col>
+                                                <Col md={6}>
+                                                    <FormGroup>
+                                                        <Label for="confirmPassword">Password</Label>
+                                                        <Input type="password"
+                                                               name="confirmPassword"
+                                                               id="confirmPassword"
+                                                               placeholder="Confirm password"
+                                                               autoComplete="new-password"
+                                                               valid={!errors.confirmPassword}
+                                                               invalid={touched.confirmPassword && !!errors.confirmPassword}
+                                                               required
+                                                               onChange={handleChange}
+                                                               onBlur={handleBlur}
+                                                               value={values.confirmPassword}/>
+                                                        <FormFeedback>{errors.confirmPassword}</FormFeedback>
+                                                    </FormGroup>
+                                                </Col>
+                                            </Row>
+                                            <FormGroup>
+                                                <CustomInput
+                                                    type="checkbox"
+                                                    id="accept"
+                                                    label="I accept the terms of use"
+                                                    required
+                                                    valid={!errors.accept}
+                                                    invalid={touched.accept && !!errors.accept}
+                                                    onChange={handleChange}
+                                                    onBlur={handleBlur}>
+                                                    <FormFeedback>{errors.accept}</FormFeedback>
+                                                </CustomInput>
+                                            </FormGroup>
+                                            <FormGroup>
+                                                <Button type="submit" color="primary" className="mr-1"
+                                                        disabled={isSubmitting || !isValid}>{isSubmitting ? 'Wait...' : 'Submit'}</Button>
+                                                <Button type="button" color="success" className="mr-1"
+                                                        onClick={() => this.touchAll(setTouched, errors)}
+                                                        disabled={isValid}>Validate</Button>
+                                                <Button type="reset" color="danger" className="mr-1"
+                                                        onClick={handleReset}>Reset</Button>
+                                            </FormGroup>
+                                        </Form>
+                                    </Col>
+                                    <Col lg="6">
+                                        <Card className={isValid ? 'bg-info' : 'bg-secondary'}>
+                                            <CardBody>
+                                                <pre>values: {JSON.stringify(values, null, 2)}</pre>
+                                                <pre>errors: {JSON.stringify(errors, null, 2)}</pre>
+                                                <pre>touched: {JSON.stringify(touched, null, 2)}</pre>
+                                            </CardBody>
+                                        </Card>
+                                    </Col>
+                                </Row>
+                            )}/>
+                </CardBody>
+            </Card>
         )
     }
 }

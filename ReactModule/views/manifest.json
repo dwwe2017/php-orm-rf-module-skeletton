@@ -1,5 +1,7 @@
 {
   "IndexController/formAction.css": "/IndexController/formAction.css",
   "IndexController/formAction.js": "/IndexController/formAction.js",
+  "IndexController/routesAction.css": "/IndexController/routesAction.css",
+  "IndexController/routesAction.js": "/IndexController/routesAction.js",
   "runtime.js": "/runtime.js"
 }

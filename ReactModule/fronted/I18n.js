@@ -20,6 +20,8 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
+ *
+ * IT IS RECOMMENDED TO USE THE FOLLOWING SCRIPT FOR FURTHER DEVELOPMENT AND NOT TO CHANGE IT!
  */
 
 import i18n from 'i18next';
@@ -27,21 +29,26 @@ import Backend from 'i18next-xhr-backend';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import { initReactI18next } from 'react-i18next';
 
-const fallbackLng = ['de_DE'];
+const fallbackLng = ['en_US'];
 const availableLanguages = ['en_US', 'de_DE'];
 
 i18n
-    .use(Backend) // load translation using xhr -> see /public/locales. We will add locales in the next step
-    .use(LanguageDetector) // detect user language
-    .use(initReactI18next) // pass the i18n instance to react-i18next.
+    .use(Backend)
+    .use(LanguageDetector)
+    .use(initReactI18next)
     .init({
-        fallbackLng, // if user computer language is not on the list of available languages, than we will be using the fallback language specified earlier
+        fallbackLng,
         debug: false,
         whitelist: availableLanguages,
         interpolation: {
             escapeValue: false
         },
         backend: {
+            /**
+             * To load a translation, one of your API classes that have the ApiController
+             * as parent class must contain the parent::getTranslationAction method
+             * @example ReactModule/src/Controllers/ApiController.php::getTranslationAction()
+             */
             loadPath: "index.php?module=reactModule&controller=api&action=getTranslation&langCode={{lng}}",
         },
         detection: {

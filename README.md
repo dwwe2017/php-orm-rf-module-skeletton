@@ -24,12 +24,12 @@ The framework for the development of an extension module for the Php Orm React F
   │
   └ extension.json
 ```
-Now let's create the file ```src/fronted/IndexController/indexAction/FormAction.js``` and fill it up as follows:
+Now let's create the file ```src/fronted/IndexController/indexAction/FirstRouteAction.js``` and fill it up as follows:
 ```jsx harmony
 import React from 'react';
 import {Div, WidgetBox, WidgetContent, WidgetHeader} from "tsi2-ui-library";
 
-export default class FormAction extends React.Component {
+export default class RoutesAction extends React.Component {
     constructor(props) {
         super(props);
         console.log(props);

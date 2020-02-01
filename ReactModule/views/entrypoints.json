@@ -8,6 +8,15 @@
       "css": [
         "/IndexController/formAction.css"
       ]
+    },
+    "IndexController/routesAction": {
+      "js": [
+        "/runtime.js",
+        "/IndexController/routesAction.js"
+      ],
+      "css": [
+        "/IndexController/routesAction.css"
+      ]
     }
   }
 }

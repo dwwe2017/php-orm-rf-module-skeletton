@@ -23,12 +23,35 @@
  */
 
 import React from "react";
-import {Col, Row} from 'reactstrap';
-import FormAction from "./FormAction";
+import {Nav, TabContent} from 'reactstrap';
+import {Route, Switch} from "react-router-dom";
+import NavItem from '../../NavItem'
+import FirstRouteAction from "./FirstRouteAction";
+import SecondRouteAction from "./SecondRouteAction";
+import ThirdRouteAction from "./ThirdRouteAction";
 
 const Routes = ({...props}) => (
     <div className="animated fadeIn">
-        <FormAction {...props}/>
+        <div className={"nav-tabs-boxed"}>
+            <Nav tabs>
+                <NavItem to={"/"}>
+                    <>FirstRouteAction</>
+                </NavItem>
+                <NavItem to={"/second"}>
+                    <>SecondRouteAction</>
+                </NavItem>
+                <NavItem to={"/third"}>
+                    <>ThirdRouteAction</>
+                </NavItem>
+            </Nav>
+            <TabContent>
+                <Switch>
+                    <Route exact={true} path="/" render={(routeProps) => <FirstRouteAction route={routeProps} {...props} />}/>
+                    <Route exact={true} path="/second" render={(routeProps) => <SecondRouteAction route={routeProps} {...props} />}/>
+                    <Route exact={true} path="/third" render={(routeProps) => <ThirdRouteAction route={routeProps} {...props} />}/>
+                </Switch>
+            </TabContent>
+        </div>
     </div>
 );
 
