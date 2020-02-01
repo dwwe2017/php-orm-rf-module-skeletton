@@ -27,16 +27,19 @@ import ReactDOM from 'react-dom';
 import Routes from "./routes";
 import {HashRouter} from "react-router-dom";
 import '../../I18n'
+import ErrorBoundary from "../../ErrorBoundary";
 
 const initProps = window.INIT_PROPS;
 const renderDOM = initProps.reactDOM;
 
 const App = ({...props}) => (
-    <Suspense fallback={(<div>Loading</div>)}>
-        <HashRouter>
-            <Routes {...props} />
-        </HashRouter>
-    </Suspense>
+    <ErrorBoundary>
+        <Suspense fallback={(<div>Loading</div>)}>
+            <HashRouter>
+                <Routes {...props} />
+            </HashRouter>
+        </Suspense>
+    </ErrorBoundary>
 );
 
 ReactDOM.render(<App {...initProps} />, document.getElementById(renderDOM));

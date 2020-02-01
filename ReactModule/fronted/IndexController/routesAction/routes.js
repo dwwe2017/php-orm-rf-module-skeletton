@@ -29,7 +29,14 @@ import NavItem from '../../NavItem'
 import FirstRouteAction from "./FirstRouteAction";
 import SecondRouteAction from "./SecondRouteAction";
 import ThirdRouteAction from "./ThirdRouteAction";
+import ErrorRouteAction from "./ErrorRouteAction";
 
+/**
+ *
+ * @param props
+ * @returns {*}
+ * @constructor
+ */
 const Routes = ({...props}) => (
     <div className="animated fadeIn">
         <div className={"nav-tabs-boxed"}>
@@ -43,12 +50,16 @@ const Routes = ({...props}) => (
                 <NavItem to={"/third"}>
                     <>ThirdRouteAction</>
                 </NavItem>
+                <NavItem to={"/error"}>
+                    <>ErrorRouteAction</>
+                </NavItem>
             </Nav>
             <TabContent>
                 <Switch>
                     <Route exact={true} path="/" render={(routeProps) => <FirstRouteAction route={routeProps} {...props} />}/>
                     <Route exact={true} path="/second" render={(routeProps) => <SecondRouteAction route={routeProps} {...props} />}/>
                     <Route exact={true} path="/third" render={(routeProps) => <ThirdRouteAction route={routeProps} {...props} />}/>
+                    <Route exact={true} path="/error" render={(routeProps) => <ErrorRouteAction route={routeProps} {...props} />}/>
                 </Switch>
             </TabContent>
         </div>
