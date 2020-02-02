@@ -25,15 +25,76 @@
 import React, {Fragment} from 'react';
 import './style.css'
 import {withTranslation} from "react-i18next";
+import axios from "axios";
+import {ToastContainer, toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 class ThirdRouteAction extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            error: null
+        }
+    }
+
+    componentDidMount() {
+        axios.get("index.php?module=reactModule&controller=api&action=getError").then(res => {
+            const error = res.data.error;
+            this.setState({error})
+        }).catch(err => {
+            const error = err.message;
+            this.setState({error})
+        })
+    }
+
+    toastIt(message){
+        toast(message);
+        setTimeout(() => {
+            toast.error(message);
+            setTimeout(() => {
+                toast.warn(message);
+                setTimeout(() => {
+                    toast.info(message);
+                }, 1200);
+            }, 1200);
+        }, 1200);
+    }
+
     render() {
         const {t} = this.props;
-        throw new Error("This is an error message that is automatically caught via Error Boundary similar to try catch. You can call up such an error within React with \"throw new Error (\'message\')\"");
-        return (
-            <Fragment>Error</Fragment>
-        )
+
+        const containerStyle = {
+            zIndex: 1999
+        };
+
+        if (this.state.error) {
+            this.toastIt(this.state.error);
+            return (
+                <div>
+                    <ToastContainer position="top-right" autoClose={5000} style={containerStyle}/>
+                    An error message is displayed because the URL that is declared raises the error 404!!!
+                    <br/><br/>
+                    <strong>This should be the classic way of generating messages using React</strong>
+                </div>
+            )
+        } else {
+            return (
+                <div>
+                    <ToastContainer position="top-right" autoClose={5000} style={containerStyle}/>
+                    But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was
+                    born and I will give you a complete account of the system, and expound the actual teachings of the
+                    great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or
+                    avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue
+                    pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who
+                    loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally
+                    circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial
+                    example, which of us ever undertakes laborious physical exercise, except to obtain some advantage
+                    from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no
+                    annoying consequences, or one who avoids a pain that produces no resultant pleasure?
+                </div>
+            )
+        }
     }
 }
 

@@ -1,5 +1,4 @@
-<?php
-/**
+/*
  * MIT License
  *
  * Copyright (c) 2020 DW Web-Engineering
@@ -23,40 +22,19 @@
  * SOFTWARE.
  */
 
-namespace Modules\PhpModule\Controllers;
+import React, {Fragment} from 'react';
+import './style.css'
+import {withTranslation} from "react-i18next";
 
 
-use Annotations\Access;
-use Annotations\Navigation;
-use Annotations\Redirect;
-use Annotations\SubNavigation;
-use Controllers\RestrictedFrontController;
-use Slim\Flash\Messages;
-
-/**
- * Class IndexController
- * @package Modules\ReactModule\Controllers
- * @Access(role=Entities\Group::ROLE_USER)
- * @Navigation(text="Php Examples", position="sidebar", icon="cil-level-down")
- */
-class IndexController extends RestrictedFrontController
-{
-    /**
-     * @Redirect(module="PhpModule", action="test")
-     */
-    public function indexAction(): void {}
-
-    /**
-     * @SubNavigation(text="Example Page", icon="cil-chevron-right")
-     */
-    public function testAction(): void
-    {
-        $this->addContext("page_title", "DWWE - PHP ORM React Framework");
-
-        $flash = new Messages();
-        $flash->addMessage("success", "This is a flash message");
-        $flash->addMessage("warning", "This is a flash message");
-        $flash->addMessage("error", "This is a flash message");
-        $flash->addMessage("dark", "This is a flash message");
+class ExceptionRouteAction extends React.Component {
+    render() {
+        const {t} = this.props;
+        throw new Error("This is an exception that is automatically caught via Error Boundary similar to try catch. You can call up such an error within React with \"throw new Error (\'message\')\"");
+        return (
+            <Fragment>Exception</Fragment>
+        )
     }
 }
+
+export default withTranslation()(ExceptionRouteAction);

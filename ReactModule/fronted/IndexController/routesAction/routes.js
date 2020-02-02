@@ -30,6 +30,7 @@ import FirstRouteAction from "./FirstRouteAction";
 import SecondRouteAction from "./SecondRouteAction";
 import ThirdRouteAction from "./ThirdRouteAction";
 import ErrorRouteAction from "./ErrorRouteAction";
+import ExceptionRouteAction from "./ExceptionRouteAction";
 
 /**
  *
@@ -50,6 +51,9 @@ const Routes = ({...props}) => (
                 <NavItem to={"/third"}>
                     <>ThirdRouteAction</>
                 </NavItem>
+                <NavItem to={"/exception"}>
+                    <>ErrorRouteAction</>
+                </NavItem>
                 <NavItem to={"/error"}>
                     <>ErrorRouteAction</>
                 </NavItem>
@@ -59,6 +63,7 @@ const Routes = ({...props}) => (
                     <Route exact={true} path="/" render={(routeProps) => <FirstRouteAction route={routeProps} {...props} />}/>
                     <Route exact={true} path="/second" render={(routeProps) => <SecondRouteAction route={routeProps} {...props} />}/>
                     <Route exact={true} path="/third" render={(routeProps) => <ThirdRouteAction route={routeProps} {...props} />}/>
+                    <Route exact={true} path="/exception" render={(routeProps) => <ExceptionRouteAction route={routeProps} {...props} />}/>
                     <Route exact={true} path="/error" render={(routeProps) => <ErrorRouteAction route={routeProps} {...props} />}/>
                 </Switch>
             </TabContent>
