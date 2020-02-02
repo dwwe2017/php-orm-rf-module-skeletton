@@ -23,7 +23,7 @@
  * SOFTWARE.
  */
 
-namespace Modules\ReactModule\Controllers;
+namespace Modules\PhpModule\Controllers;
 
 
 use Annotations\Access;
@@ -33,30 +33,23 @@ use Annotations\SubNavigation;
 use Controllers\RestrictedFrontController;
 
 /**
- * Class PublicController
- * @package Modules\Dashboard\Controllers
+ * Class IndexController
+ * @package Modules\ReactModule\Controllers
  * @Access(role=Entities\Group::ROLE_USER)
- * @Navigation(text="React Examples", position="sidebar", icon="cil-level-down")
+ * @Navigation(text="Php Examples", position="sidebar", icon="cil-level-down")
  */
 class IndexController extends RestrictedFrontController
 {
     /**
-     * @internal ReactJS
-     * @see views/IndexController/indexAction.js
-     * @Redirect(module="reactModule", action="form")
+     * @Redirect(module="PhpModule", action="test")
      */
     public function indexAction(): void {}
 
     /**
-     * @SubNavigation(text="Forms and Validation", icon="cil-chevron-right")
+     * @SubNavigation(text="Example Page", icon="cil-chevron-right")
      */
-    public function formAction(): void
+    public function testAction(): void
     {
-        $this->addContext("example_message", "This text has been sent by Ajax ;)");
+        $this->addContext("page_title", "DWWE - PHP ORM React Framework");
     }
-
-    /**
-     * @SubNavigation(text="Tabs and Routes", icon="cil-chevron-right")
-     */
-    public function routesAction(): void {}
 }
