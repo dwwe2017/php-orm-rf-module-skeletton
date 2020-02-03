@@ -51,12 +51,11 @@ class IndexController extends RestrictedFrontController
      */
     public function testAction(): void
     {
-        $this->addContext("page_title", "DWWE - PHP ORM React Framework");
+        $this->getFlashHandler()->addError("This is a flash message test");
+        $this->getFlashHandler()->addWarning("This is a flash message test");
+        $this->getFlashHandler()->addInfo("This is a flash message test");
+        $this->getFlashHandler()->addSuccess("This is a flash message test");
 
-        $flash = new Messages();
-        $flash->addMessage("success", "This is a flash message");
-        $flash->addMessage("warning", "This is a flash message");
-        $flash->addMessage("error", "This is a flash message");
-        $flash->addMessage("dark", "This is a flash message");
+        $this->addContext("page_title", "DWWE - PHP ORM React Framework");
     }
 }
