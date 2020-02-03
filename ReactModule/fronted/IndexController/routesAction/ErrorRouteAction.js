@@ -23,6 +23,7 @@
  */
 
 import React, {Fragment} from 'react';
+import {Alert} from 'reactstrap';
 import './style.css'
 import {withTranslation} from "react-i18next";
 import axios from "axios";
@@ -73,8 +74,12 @@ class ThirdRouteAction extends React.Component {
             return (
                 <div>
                     <ToastContainer position="top-right" autoClose={5000} style={containerStyle}/>
+                    <Alert color="danger">
+                        {this.state.error.toString()}
+                    </Alert>
+                    <br/>
                     An error message is displayed because the URL that is declared raises the error 404!!!
-                    <br/><br/>
+                    <br/>
                     <strong>This should be the classic way of generating messages using React</strong>
                 </div>
             )

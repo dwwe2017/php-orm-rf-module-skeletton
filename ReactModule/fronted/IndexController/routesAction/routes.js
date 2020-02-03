@@ -52,7 +52,7 @@ const Routes = ({...props}) => (
                     <>ThirdRouteAction</>
                 </NavItem>
                 <NavItem to={"/exception"}>
-                    <>ErrorRouteAction</>
+                    <>ExceptionRouteAction</>
                 </NavItem>
                 <NavItem to={"/error"}>
                     <>ErrorRouteAction</>
