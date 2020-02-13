@@ -26,12 +26,38 @@
 namespace Modules\ReactModule\Controllers;
 
 
+use Doctrine\Common\Annotations\AnnotationException;
+use Exceptions\CacheException;
+use Exceptions\DoctrineException;
+use Exceptions\InvalidArgumentException;
+use ReflectionException;
+
 /**
  * Class ApiController
  * @package Modules\Dashboard\Controllers
  */
 class ApiController extends \Controllers\ApiController
 {
+    /**
+     * ApiController constructor.
+     * @param string $baseDir
+     * @throws AnnotationException
+     * @throws CacheException
+     * @throws DoctrineException
+     * @throws InvalidArgumentException
+     * @throws ReflectionException
+     */
+    public function __construct(string $baseDir)
+    {
+        parent::__construct($baseDir);
+
+        /**
+         * With this method the context is cleaned up before an output takes place.
+         * So you make sure that only the information you declare is output!
+         */
+        $this->contextClear();
+    }
+
     /**
      * @see fronted/IndexController/indexAction/TestAction.js
      */
@@ -41,18 +67,26 @@ class ApiController extends \Controllers\ApiController
     }
 
     /**
-     * @param string $default
+     *
      */
-    protected function getTranslationAction(string $default = "en_US"): void
+    protected function getMessageAction(): void
     {
-        parent::getTranslationAction($default);
+        $this->addContext("message", "Message from ApiController");
     }
 
     /**
      *
      */
-    protected function getMessageAction(): void
+    protected function postExampleAction(): void
     {
-        $this->addContext("message", "This message comes from ApiController::getMessageAction()");
+        $this->addContext("success", __("Saved"));
+    }
+
+    /**
+     * @param string $default
+     */
+    protected function getTranslationAction(string $default = "en_US"): void
+    {
+        parent::getTranslationAction($default);
     }
 }

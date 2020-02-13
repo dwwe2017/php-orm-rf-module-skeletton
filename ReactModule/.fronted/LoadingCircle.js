@@ -22,42 +22,30 @@
  * SOFTWARE.
  */
 
-import React, {Component} from "react";
-import 'react-toastify/dist/ReactToastify.css';
-import {Alert} from 'reactstrap';
-import {withTranslation} from "react-i18next";
+import React from "react";
+import "./Circle.scss";
 
 /**
  *
  */
-export default class ErrorBoundary extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {error: null, errorInfo: null};
-    }
-
-    componentDidCatch(error, errorInfo) {
-        this.setState({
-            error: error,
-            errorInfo: errorInfo
-        })
-    }
-
+export default class LoadingCircle extends React.Component {
     render() {
-        if (this.state.errorInfo) {
-            return (
-                <Alert color="danger">
-                    <h4 className="alert-heading">Something went wrong.</h4>
-                    <p>
-                        {this.state.error && this.state.error.toString()}
-                    </p>
-                    <hr/>
-                    <p className="mb-0" style={{ whiteSpace: 'pre-wrap' }}>
-                        {this.state.errorInfo.componentStack}
-                    </p>
-                </Alert>
-            );
-        }
-        return this.props.children;
+        return (
+            <div className="sk-circle">
+                <div className="sk-circle1 sk-child"/>
+                <div className="sk-circle2 sk-child"/>
+                <div className="sk-circle3 sk-child"/>
+                <div className="sk-circle4 sk-child"/>
+                <div className="sk-circle5 sk-child"/>
+                <div className="sk-circle6 sk-child"/>
+                <div className="sk-circle7 sk-child"/>
+                <div className="sk-circle8 sk-child"/>
+                <div className="sk-circle9 sk-child"/>
+                <div className="sk-circle10 sk-child"/>
+                <div className="sk-circle11 sk-child"/>
+                <div className="sk-circle12 sk-child"/>
+            </div>
+        )
     }
 }
+

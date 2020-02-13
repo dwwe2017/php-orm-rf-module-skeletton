@@ -1,5 +1,4 @@
-<?php
-/**
+/*
  * MIT License
  *
  * Copyright (c) 2020 DW Web-Engineering
@@ -23,37 +22,41 @@
  * SOFTWARE.
  */
 
-namespace Modules\ReactModule\Controllers;
-
-
-use Annotations\Access;
-use Annotations\Navigation;
-use Annotations\Redirect;
-use Annotations\SubNavigation;
-use Controllers\RestrictedFrontController;
+import React, {Component} from "react";
+import 'react-toastify/dist/ReactToastify.css';
+import {Alert} from 'reactstrap';
 
 /**
- * Class PublicController
- * @package Modules\Dashboard\Controllers
- * @Access(role=Entities\Group::ROLE_USER)
- * @Navigation(text="React Examples", position="sidebar", icon="cil-level-down")
+ *
  */
-class IndexController extends RestrictedFrontController
-{
-    /**
-     * @internal ReactJS
-     * @see views/IndexController/indexAction.js
-     * @Redirect(module="reactModule", action="form")
-     */
-    public function indexAction(): void {}
+export default class ErrorBoundary extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {error: null, errorInfo: null};
+    }
 
-    /**
-     * @SubNavigation(text="Forms and Validation", icon="cil-chevron-right")
-     */
-    public function formAction(): void {}
+    componentDidCatch(error, errorInfo) {
+        this.setState({
+            error: error,
+            errorInfo: errorInfo
+        })
+    }
 
-    /**
-     * @SubNavigation(text="Tabs and Routes", icon="cil-chevron-right")
-     */
-    public function routesAction(): void {}
+    render() {
+        if (this.state.errorInfo) {
+            return (
+                <Alert color="danger">
+                    <h4 className="alert-heading">Something went wrong.</h4>
+                    <p>
+                        {this.state.error && this.state.error.toString()}
+                    </p>
+                    <hr/>
+                    <p className="mb-0" style={{ whiteSpace: 'pre-wrap' }}>
+                        {this.state.errorInfo.componentStack}
+                    </p>
+                </Alert>
+            );
+        }
+        return this.props.children;
+    }
 }

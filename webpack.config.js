@@ -37,8 +37,8 @@ Encore
      * Each entry will result in one JavaScript file (e.g. indexAction.js)
      * and one CSS file (e.g. indexAction.css) if your JavaScript imports CSS.
      */
-    .addEntry('IndexController/formAction', './ReactModule/fronted/IndexController/formAction/index.js')
-    .addEntry('IndexController/routesAction', './ReactModule/fronted/IndexController/routesAction/index.js')
+    .addEntry('IndexController/formAction', './ReactModule/.fronted/IndexController/formAction/index.js')
+    .addEntry('IndexController/routesAction', './ReactModule/.fronted/IndexController/routesAction/index.js')
     //.addEntry('ExampleController/secondAction', './Module/fronted/IndexController/secondAction/index.js')
     //.addEntry('ExampleController/thirdAction', './Module/fronted/IndexController/thirdAction/index.js')
     //.addEntry('ExampleController/etcAction', './Module/fronted/IndexController/etcAction/index.js')
@@ -47,7 +47,7 @@ Encore
     .cleanupOutputBeforeBuild()
     .enableBuildNotifications()
     .enableSourceMaps(!Encore.isProduction())
-    .enableReactPreset()
+    .enableReactPreset(true)
     .enableSassLoader()
 
 // uncomment if you use TypeScript
