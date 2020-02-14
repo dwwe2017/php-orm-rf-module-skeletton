@@ -31,16 +31,14 @@ import {Alert, Card, CardHeader, CardBody, Col, Row} from "reactstrap";
 import LoadingCircle from "../../LoadingCircle";
 import {toast, ToastContainer} from "react-toastify";
 
-const save = (values, formikProps) => {
-    console.log(values);
-    alert(JSON.stringify(values));
-    formikProps.setSubmitting(false);
-};
-
 /**
  *
  */
 class FormAction extends React.Component {
+
+    /**
+     * @see https://reactjs.org/docs/react-component.html#constructor
+     */
     constructor(props) {
         super(props);
         this.state = {
@@ -50,45 +48,65 @@ class FormAction extends React.Component {
         }
     }
 
+    /**
+     * @see https://reactjs.org/docs/react-component.html#componentdidmount
+     */
     componentDidMount() {
+        /**
+         * @see ReactModule/src/Controllers/FormController.php::exampleAction()
+         */
         axios.get("index.php?module=reactModule&controller=form&action=example").then(res => {
             const schema = res.data.schema;
             this.setState({schema})
         })
     }
 
+    /**
+     * @see https://github.com/fkhadra/react-toastify#readme
+     */
     error() {
         toast.error(this.state.errors);
-        setTimeout(() => {
-            this.setState({errors: null})
-        }, 3000)
     }
 
+    /**
+     * @see https://github.com/fkhadra/react-toastify#readme
+     */
     success() {
         toast.success(this.state.success);
     }
 
     render() {
 
+        /**
+         * @see https://react.i18next.com/
+         */
         const {t} = this.props;
+
+        /**
+         * @see https://github.com/flipbyte/formik-json-schema#form-component
+         */
         const schema = this.state.schema;
 
         if (!schema) {
             return <LoadingCircle/>
         }
 
-        const containerStyle = {
-            zIndex: 1999
-        };
+        /*
+         * Fire the error message using Toastify..
+         */
+        if (this.state.errors) {
+            this.error()
+        }
 
         return (
             <>
-                {this.state.errors ? this.error() : null}
+                {/* ..and bring out the corresponding message as a container */}
                 {this.state.errors ? (<Alert color="danger">{this.state.errors.toString()}</Alert>) : null}
 
-                <ToastContainer position="top-right" autoClose={5000} style={containerStyle}/>
+                <ToastContainer position="top-right" autoClose={5000} style={{zIndex: 1999}}/>
                 <Card>
                     <CardHeader>
+                        {/* Here is translated using the constant function t() */}
                         <i className="icon-note"/><strong>{t("Ajax Form")}</strong>
                     </CardHeader>
                     <CardBody>
@@ -98,10 +116,14 @@ class FormAction extends React.Component {
                         <hr/>
                         <Row>
                             <Col lg="12">
+                                {/* @see https://github.com/flipbyte/formik-json-schema#form-component */}
                                 <Form
                                     schema={schema}
                                     onSubmit={(values, formikProps) => {
                                         setTimeout(() => {
+                                            /**
+                                             * @see ReactModule/src/Controllers/ApiController.php::postExampleAction()
+                                             */
                                             axios.post("index.php?module=reactModule&controller=api&action=postExample", values)
                                                 .then((res) => {
                                                     const errors = res.data.error;
@@ -109,6 +131,7 @@ class FormAction extends React.Component {
                                                     if (errors) {
                                                         this.setState({errors});
                                                     } else {
+                                                        this.setState({errors: null});
                                                         if (success) {
                                                             this.setState({success});
                                                         }
@@ -136,4 +159,7 @@ class FormAction extends React.Component {
     }
 }
 
+/**
+ * @see https://react.i18next.com/
+ */
 export default withTranslation()(FormAction);

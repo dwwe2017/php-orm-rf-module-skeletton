@@ -79,7 +79,14 @@ class ApiController extends \Controllers\ApiController
      */
     protected function postExampleAction(): void
     {
-        $this->addContext("success", __("Saved"));
+        $json = $this->getRequestHandler()->getAxios();
+        $number = $json->get("number", null);
+
+        if(is_numeric($number)){
+            $this->addContext("success", __("Saved"));
+        } else {
+            $this->addContext("error", sprintf(__("%s is not numeric"), $number));
+        }
     }
 
     /**
