@@ -27,7 +27,7 @@ import React, {Component} from "react";
 export default class LayoutSidebarAside extends Component {
     render() {
         return (
-            <div className="c-sidebar c-sidebar-lg c-sidebar-light c-sidebar-right c-sidebar-overlaid" id="aside">
+            <>
                 <button className="c-sidebar-close c-class-toggler" type="button" data-target="_parent" data-class="c-sidebar-show" responsive="true">
                     <svg className="c-icon">
                         <use xlinkHref="assets/vendors/@coreui/icons/svg/free.svg#cil-x"/>
@@ -311,7 +311,7 @@ export default class LayoutSidebarAside extends Component {
                         <small className="text-muted">25GB/256GB</small>
                     </div>
                 </div>
-            </div>
+            </>
         )
     }
 }

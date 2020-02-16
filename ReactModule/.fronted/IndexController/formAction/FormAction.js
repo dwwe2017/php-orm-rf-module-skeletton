@@ -72,7 +72,14 @@ class FormAction extends React.Component {
      * @see https://github.com/fkhadra/react-toastify#readme
      */
     success() {
-        toast.success(this.state.success);
+        toast.success(this.state.success, {
+            position: toast.POSITION.BOTTOM_RIGHT
+        });
+    }
+
+    clear() {
+        toast.dismiss();
+        this.setState({errors: null});
     }
 
     render() {
@@ -131,7 +138,7 @@ class FormAction extends React.Component {
                                                     if (errors) {
                                                         this.setState({errors});
                                                     } else {
-                                                        this.setState({errors: null});
+                                                        this.clear();
                                                         if (success) {
                                                             this.setState({success});
                                                         }

@@ -45,7 +45,7 @@ const App = ({...props}) => (
 );
 
 
-ReactDOM.render(<LayoutSidebarAside />, document.getElementById('_layout_sidebar_aside_react_entry'));
+ReactDOM.render(<LayoutSidebarAside />, document.getElementById('aside'));
 
 
 ReactDOM.render(<App {...initProps} />, document.getElementById(renderDOM));
