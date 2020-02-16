@@ -53,7 +53,7 @@ class IndexController extends RestrictedFrontController
     public function formAction(): void {}
 
     /**
-     * @SubNavigation(text="Tabs and Routes", icon="cil-chevron-right")
+     * @SubNavigation(text="Tabs, Routes & Errors", icon="cil-chevron-right")
      */
     public function routesAction(): void {}
 }
