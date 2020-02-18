@@ -37,7 +37,7 @@ use Slim\Flash\Messages;
  * Class IndexController
  * @package Modules\ReactModule\Controllers
  * @Access(role=Entities\Group::ROLE_USER)
- * @Navigation(text="Php Examples", position="sidebar", icon="cil-level-down")
+ * @Navigation(text="Examples", position="sidebar", icon="cil-level-down", badge="PHP 7.4", badgeClass="success")
  */
 class IndexController extends RestrictedFrontController
 {
@@ -47,7 +47,7 @@ class IndexController extends RestrictedFrontController
     public function indexAction(): void {}
 
     /**
-     * @SubNavigation(text="Example Page", icon="cil-chevron-right")
+     * @SubNavigation(text="Example Page", icon="cil-chevron-right", requiredGetParams={"test", "test2"})
      */
     public function testAction(): void
     {
