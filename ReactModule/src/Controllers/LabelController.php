@@ -23,44 +23,32 @@
  * SOFTWARE.
  */
 
-namespace Modules\PhpModule\Controllers;
+namespace Modules\ReactModule\Controllers;
 
 
-use Annotations\Access;
 use Annotations\Navigation;
-use Annotations\Redirect;
 use Annotations\SubNavigation;
 use Controllers\RestrictedFrontController;
-use Slim\Flash\Messages;
 
 /**
- * Class IndexController
+ * Class LabelController
  * @package Modules\ReactModule\Controllers
- * @Access(role=Entities\Group::ROLE_USER)
- * @Navigation(text="Examples", position="sidebar", icon="cil-level-down", badge="PHP 7.4", badgeClass="success")
+ * @Navigation(text="Only Bookmarks", position="sidebar", isLabel=true, labelClass="success")
  */
-class IndexController extends RestrictedFrontController
+class LabelController extends RestrictedFrontController
 {
     /**
-     * @Redirect(module="PhpModule", action="test")
+     * @SubNavigation(text="Bookmark 2", href="javascript:void(0)", isLabel=true, labelClass="warning")
      */
-    public function indexAction(): void {}
+    public function label1Action(): void {}
 
     /**
-     * @SubNavigation(text="Example Page", icon="cil-chevron-right")
+     * @SubNavigation(text="Tea(m)speak Interface", href="https://www.teamspeak-interface.net", target="_blank", isLabel=true, labelClass="info")
      */
-    public function testAction(): void
-    {
-        $this->getFlashHandler()->addError("This is a flash message test");
-        $this->getFlashHandler()->addWarning("This is a flash message test");
-        $this->getFlashHandler()->addInfo("This is a flash message test");
-        $this->getFlashHandler()->addSuccess("This is a flash message test");
-
-        $this->addContext("page_title", "DWWE - PHP ORM React Framework");
-    }
+    public function label2Action(): void {}
 
     /**
-     * @SubNavigation(text="Disabled Link", icon="cil-ban", requiredGetParams={"required_param_1", "required_param_2"})
+     * @SubNavigation(text="dwwe2017/phorm", href="https://github.com/dwwe2017/php-orm-react-framework", target="_blank", isLabel=true, labelClass="danger")
      */
-    public function disabledAction(): void {}
+    public function label3Action(): void {}
 }
