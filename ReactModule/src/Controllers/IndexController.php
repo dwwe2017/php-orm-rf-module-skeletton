@@ -36,7 +36,7 @@ use Controllers\RestrictedFrontController;
  * Class PublicController
  * @package Modules\Dashboard\Controllers
  * @Access(role=Entities\Group::ROLE_USER)
- * @Navigation(text="Examples", position="sidebar", icon="cil-level-down", badge="React JS", badgeClass="info")
+ * @Navigation(text="Examples", positions={"sidebar", "top_left"}, icon="cil-level-down", badge="React JS", badgeClass="info", href="index.php?module=reactModule")
  */
 class IndexController extends RestrictedFrontController
 {
