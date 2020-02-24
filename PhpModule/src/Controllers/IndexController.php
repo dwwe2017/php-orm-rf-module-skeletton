@@ -30,6 +30,8 @@ use Annotations\Access;
 use Annotations\Navigation;
 use Annotations\Redirect;
 use Annotations\SubNavigation;
+use Annotations\SubRoute;
+use Annotations\SubRoutes;
 use Controllers\RestrictedFrontController;
 use Slim\Flash\Messages;
 
@@ -63,4 +65,15 @@ class IndexController extends RestrictedFrontController
      * @SubNavigation(text="Disabled Link", icon="cil-ban", requiredGetParams={"required_param_1", "required_param_2"})
      */
     public function disabledAction(): void {}
+
+    /**
+     * @SubNavigation(text="Navigation Sub-Routes", icon="cil-line-spacing")
+     * @SubRoutes(routes={
+     *     @SubRoute(text="SubRoute Link1", icon="cil-mood-good", hrefQueryAddition={"test": "test", "test2": "test2"}),
+     *     @SubRoute(text="SubRoute Link2", labelIcon="cil-meh", href="javascript:void(0)", isLabel=true, labelClass="danger"),
+     *     @SubRoute(text="SubRoute Link3", labelIcon="cil-mood-very-bad", href="javascript:void(0)", isLabel=true, labelClass="info"),
+     *     @SubRoute(text="SubRoute Link4", icon="cil-mood-very-good", href="javascript:void(0)"),
+     * }, onlyWhenActive=false)
+     */
+    public function subRoutesAction(): void {}
 }

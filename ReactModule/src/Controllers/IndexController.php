@@ -30,6 +30,8 @@ use Annotations\Access;
 use Annotations\Navigation;
 use Annotations\Redirect;
 use Annotations\SubNavigation;
+use Annotations\SubRoute;
+use Annotations\SubRoutes;
 use Controllers\RestrictedFrontController;
 
 /**
@@ -54,6 +56,10 @@ class IndexController extends RestrictedFrontController
 
     /**
      * @SubNavigation(text="Tabs, Routes & Errors", icon="cil-chevron-right")
+     * @SubRoutes(routes={
+     *     @SubRoute(text="DWWE", target="_blank", icon="cil-link", href="https://www.dwwe.de", badge="SubRoute", badgeClass="danger"),
+     *     @SubRoute(text="TSI", target="_blank", icon="cil-link", href="https://www.teamspeak-interface.net", badge="SubRoute", badgeClass="warning")
+     * }, onlyWhenActive=true)
      */
     public function routesAction(): void {}
 }
